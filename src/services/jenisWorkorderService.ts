@@ -2,9 +2,17 @@ import { api } from "@/lib/api";
 import { JenisWorkorder, JenisWorkorderInput, JenisWorkorderResponse } from "@/types/jenisWorkorderTypes";
 import { toCamelCase } from "@/utils/caseFormatter";
 
+interface JenisWorkorderParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+  sort?: string;
+  all?: boolean;
+}
+
 export const fetchJenisWorkorders = async (page?: number, limit?: number, search?: string, sort?: string, all?: boolean): Promise<JenisWorkorderResponse> => {
   try {
-    const params: Record<string, any> = {};
+    const params: JenisWorkorderParams = {};
     if (all) {
       params.all = true;
     } else {
